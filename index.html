@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Chef à Porta - Entrega de Comida em Portugal</title>
+    <link rel="stylesheet" href="index.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header" id="header">
+        <div class="container">
+            <div class="header-content">
+                <!-- Logo -->
+                <div class="logo">
+                    <i class="fas fa-shopping-bag"></i>
+                    <span>Chef<span class="logo-accent"> à Porta</span></span>
+                </div>
+
+                <!-- Search (Desktop) -->
+                <div class="search-bar">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Procura pratos ou restaurantes..." id="searchInput">
+                </div>
+
+                <!-- Navigation -->
+                <nav class="nav-desktop">
+                    <a href="#home" class="nav-link active">Início</a>
+                    <a href="#restaurants" class="nav-link">Restaurantes</a>
+                    <div class="location">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Lisboa, Portugal</span>
+                    </div>
+                </nav>
+
+                <!-- Actions -->
+                <div class="header-actions">
+                    <button class="btn-icon" id="userBtn">
+                        <i class="fas fa-user"></i>
+                    </button>
+                    <button class="cart-btn" id="cartBtn">
+                        <i class="fas fa-shopping-bag"></i>
+                        <span class="cart-total">€0,00</span>
+                        <span class="cart-count" id="cartCount">0</span>
+                    </button>
+                    <button class="menu-toggle" id="menuToggle">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <div class="mobile-menu-content">
+            <div class="mobile-search">
+                <i class="fas fa-search"></i>
+                <input type="text" placeholder="O que queres comer hoje?">
+            </div>
+            <nav class="mobile-nav">
+                <a href="#home" class="mobile-nav-link">
+                    <span>Início</span>
+                    <i class="fas fa-chevron-right"></i>
+                </a>
+                <a href="#restaurants" class="mobile-nav-link">
+                    <span>Restaurantes</span>
+                    <i class="fas fa-chevron-right"></i>
+                </a>
+                <a href="#cart" class="mobile-nav-link">
+                    <span>O meu carrinho</span>
+                    <i class="fas fa-chevron-right"></i>
+                </a>
+            </nav>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section -->
+        <section id="home" class="hero">
+            <div class="hero-bg"></div>
+            <div class="container">
+                <div class="hero-content">
+                    <h1 class="hero-title">
+                        A tua comida favorita,<br>
+                        <span class="text-primary">entregue num clique.</span>
+                    </h1>
+                    <p class="hero-subtitle">
+                        Os melhores restaurantes de Lisboa e arredores agora disponíveis à porta da tua casa. Rápido, fresco e saboroso.
+                    </p>
+                    <form class="hero-search" id="heroSearchForm">
+                        <div class="search-input-wrapper">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <input type="text" placeholder="Insere a tua morada para começar..." id="heroSearchInput">
+                            <button type="submit" class="search-btn">
+                                <span>Pesquisar</span>
+                                <i class="fas fa-arrow-right"></i>
+                            </button>
+                        </div>
+                    </form>
+                    <div class="hero-features">
+                        <div class="feature">
+                            <div class="feature-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <span>Entrega em 30min</span>
+                        </div>
+                        <div class="feature">
+                            <div class="feature-icon">
+                                <i class="fas fa-shield-alt"></i>
+                            </div>
+                            <span>Pagamento Seguro</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Categories Section -->
+        <section class="categories">
+            <div class="container">
+                <div class="section-header">
+                    <div>
+                        <h2>Explora por Categoria</h2>
+                        <p>O que te apetece comer hoje?</p>
+                    </div>
+                    <button class="view-all-btn" onclick="showRestaurants()">
+                        Ver todas as categorias
+                        <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+                <div class="categories-grid" id="categoriesGrid">
+                    <!-- Categories will be populated by JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Promo Section -->
+        <section class="promo">
+            <div class="container">
+                <div class="promo-card">
+                    <div class="promo-content">
+                        <span class="promo-badge">Oferta de Boas-vindas</span>
+                        <h2>Entrega Grátis na tua primeira encomenda!</h2>
+                        <p>Usa o código <code>BEMVINDO2026</code> no checkout e aproveita a entrega gratuita em qualquer restaurante da cidade.</p>
+                        <button class="promo-btn" onclick="showRestaurants()">Encomendar Agora</button>
+                    </div>
+                    <div class="promo-image"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Featured Restaurants -->
+        <section class="featured-restaurants">
+            <div class="container">
+                <div class="section-header">
+                    <div>
+                        <h2>Restaurantes em Destaque</h2>
+                        <p>Os preferidos da comunidade portuguesa esta semana.</p>
+                    </div>
+                    <button class="view-all-btn" onclick="showRestaurants()">Ver todos</button>
+                </div>
+                <div class="restaurants-grid" id="featuredRestaurants">
+                    <!-- Featured restaurants will be populated by JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Restaurants Section -->
+        <section id="restaurants" class="restaurants-section" style="display: none;">
+            <div class="container">
+                <div class="restaurants-header">
+                    <h2>Todos os Restaurantes</h2>
+                    <div class="filters">
+                        <button class="filter-btn active" data-category="all">Todos</button>
+                        <button class="filter-btn" data-category="Pizza">Pizza</button>
+                        <button class="filter-btn" data-category="Hambúrgueres">Hambúrgueres</button>
+                        <button class="filter-btn" data-category="Sushi">Sushi</button>
+                        <button class="filter-btn" data-category="Tradicional Portuguesa">Portuguesa</button>
+                        <button class="filter-btn" data-category="Saudável">Saudável</button>
+                    </div>
+                </div>
+                <div class="restaurants-grid" id="allRestaurants">
+                    <!-- All restaurants will be populated by JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Restaurant Detail Modal -->
+        <div class="modal" id="restaurantModal">
+            <div class="modal-content restaurant-detail">
+                <div class="modal-header">
+                    <button class="modal-close" id="closeRestaurantModal">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="restaurant-detail-content" id="restaurantDetailContent">
+                    <!-- Restaurant details will be populated by JavaScript -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Cart Modal -->
+        <div class="modal" id="cartModal">
+            <div class="modal-content cart-modal">
+                <div class="modal-header">
+                    <h3>O Teu Carrinho</h3>
+                    <button class="modal-close" id="closeCartModal">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="cart-content" id="cartContent">
+                    <!-- Cart items will be populated by JavaScript -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Checkout Modal -->
+        <div class="modal" id="checkoutModal">
+            <div class="modal-content checkout-modal">
+                <div class="modal-header">
+                    <h3>Finalizar Pedido</h3>
+                    <button class="modal-close" id="closeCheckoutModal">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="checkout-content">
+                    <form id="checkoutForm" class="checkout-form">
+                        <div class="form-section">
+                            <h4><i class="fas fa-user"></i> Dados Pessoais</h4>
+                            <div class="form-row">
+                                <input type="text" placeholder="Nome Completo" required>
+                                <input type="email" placeholder="E-mail" required>
+                            </div>
+                            <input type="tel" placeholder="Telemóvel" required>
+                        </div>
+                        
+                        <div class="form-section">
+                            <h4><i class="fas fa-map-marker-alt"></i> Morada de Entrega</h4>
+                            <div class="form-row">
+                                <input type="text" placeholder="Rua / Avenida" required style="flex: 2;">
+                                <input type="text" placeholder="Nº / Andar" required style="flex: 1;">
+                            </div>
+                            <div class="form-row">
+                                <input type="text" placeholder="Código Postal (0000-000)" required>
+                                <input type="text" placeholder="Cidade" required>
+                            </div>
+                        </div>
+
+                        <div class="form-section">
+                            <h4><i class="fas fa-credit-card"></i> Método de Pagamento</h4>
+                            <div class="payment-methods">
+                                <label class="payment-method">
+                                    <input type="radio" name="payment" value="cartao" checked>
+                                    <div class="payment-option">
+                                        <i class="fas fa-credit-card"></i>
+                                        <span>Cartão de Crédito</span>
+                                    </div>
+                                </label>
+                                <label class="payment-method">
+                                    <input type="radio" name="payment" value="mbway">
+                                    <div class="payment-option">
+                                        <div class="mbway-icon">MB</div>
+                                        <span>MB WAY</span>
+                                    </div>
+                                </label>
+                                <label class="payment-method">
+                                    <input type="radio" name="payment" value="paypal">
+                                    <div class="payment-option">
+                                        <i class="fab fa-paypal"></i>
+                                        <span>PayPal</span>
+                                    </div>
+                                </label>
+                                <label class="payment-method">
+                                    <input type="radio" name="payment" value="dinheiro">
+                                    <div class="payment-option">
+                                        <i class="fas fa-money-bill-wave"></i>
+                                        <span>Dinheiro</span>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="checkout-summary" id="checkoutSummary">
+                            <!-- Order summary will be populated by JavaScript -->
+                        </div>
+
+                        <button type="submit" class="checkout-btn">
+                            <span>Confirmar Encomenda</span>
+                            <i class="fas fa-check-circle"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Order Tracking Modal -->
+        <div class="modal" id="trackingModal">
+            <div class="modal-content tracking-modal">
+                <div class="modal-header">
+                    <h3>Rastreamento do Pedido</h3>
+                    <button class="modal-close" id="closeTrackingModal">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="tracking-content" id="trackingContent">
+                    <!-- Tracking info will be populated by JavaScript -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Stats Section -->
+        <section class="stats">
+            <div class="container">
+                <div class="stats-grid">
+                    <div class="stat">
+                        <div class="stat-number">1000+</div>
+                        <div class="stat-label">Restaurantes</div>
+                        <p>Uma vasta seleção para todos os gostos.</p>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">25min</div>
+                        <div class="stat-label">Tempo Médio</div>
+                        <p>Entrega rápida e eficiente garantida.</p>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">4.9/5</div>
+                        <div class="stat-label">Avaliação</div>
+                        <p>Classificação média dos nossos clientes.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <i class="fas fa-shopping-bag"></i>
+                        <span>Chef à Porta</span>
+                    </div>
+                    <p>A melhor comida da tua cidade entregue à porta de tua casa em poucos minutos. Sabor, rapidez e confiança.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>A Nossa App</h4>
+                    <ul>
+                        <li><a href="#">Sobre nós</a></li>
+                        <li><a href="#">Parceiros</a></li>
+                        <li><a href="#">Carreiras</a></li>
+                        <li><a href="#">Blog Chef à Porta</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Ajuda</h4>
+                    <ul>
+                        <li><a href="#">Centro de Ajuda</a></li>
+                        <li><a href="#">Contactos</a></li>
+                        <li><a href="#">Questões Frequentes</a></li>
+                        <li><a href="#">Taxas de Entrega</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Recebe Novidades</h4>
+                    <p>Subscreve para receberes as melhores promoções nos teus restaurantes favoritos.</p>
+                    <div class="newsletter">
+                        <input type="email" placeholder="O teu email">
+                        <button>OK</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>© 2026 Chef à Porta Delivery. Todos os direitos reservados.</p>
+                <div class="footer-links">
+                    <a href="#">Privacidade</a>
+                    <a href="#">Termos e Condições</a>
+                    <a href="#">Cookies</a>
+                    <a href="#">Livro de Reclamações</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="index.js"></script>
+</body>
+</html>
